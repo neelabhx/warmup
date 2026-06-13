@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chef | Your Daily Cooking Plan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        chef: {
+                            warm: '#FFFBEB',
+                            calm: '#F0F9FF',
+                            accent: '#0EA5E9',
+                            success: '#10B981',
+                            neutral: '#64748B',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .step-transition {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .large-card {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .large-card:active {
+            transform: scale(0.98);
+        }
+        .accessible-text {
+            font-size: 1.125rem; /* 18px */
+        }
+        .accessible-header {
+            font-size: 1.5rem; /* 24px */
+        }
+    </style>
+</head>
+<body class="bg-chef-warm min-h-screen p-4 md:p-8 flex flex-col items-center">
+
+    <!-- Header & Progress -->
+    <div class="w-full max-w-2xl mb-8">
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-3xl font-800 text-chef-neutral tracking-tight">Simple Chef 🍳</h1>
+            <span id="step-counter" class="text-chef-secondary font-600 bg-white px-4 py-1 rounded-full border border-gray-200">Step 1 of 4</span>
+        </div>
+        <div class="w-full bg-gray-200 h-4 rounded-full overflow-hidden">
+            <div id="progress-bar" class="bg-chef-success h-full step-transition" style="width: 25%"></div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main id="app-content" class="w-full max-w-2xl bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-gray-100">
+        <!-- Step 1: Vibe -->
+        <div id="step-1" class="step-view">
+            <h2 class="accessible-header font-800 text-gray-800 mb-8">How does your day look?</h2>
+            <div class="space-y-4">
+                <button onclick="saveStep('time', 'busy')" class="large-card w-full p-6 text-left border-2 border-gray-100 rounded-2xl bg-chef-calm hover:border-chef-accent flex items-center gap-6 group">
+                    <span class="text-4xl">🏃‍♂️</span>
+                    <div>
+                        <h3 class="text-xl font-700 text-chef-accent uppercase tracking-wide">Super Busy</h3>
+                        <p class="text-chef-neutral accessible-text">Under 15 mins, quick cleanup.</p>
+                    </div>
+                </button>
+                <button onclick="saveStep('time', 'normal')" class="large-card w-full p-6 text-left border-2 border-gray-100 rounded-2xl bg-chef-calm hover:border-chef-accent flex items-center gap-6 group">
+                    <span class="text-4xl">🕒</span>
+                    <div>
+                        <h3 class="text-xl font-700 text-chef-accent uppercase tracking-wide">Normal Day</h3>
+                        <p class="text-chef-neutral accessible-text">Under 35 mins, standard meals.</p>
+                    </div>
+                </button>
+                <button onclick="saveStep('time', 'free')" class="large-card w-full p-6 text-left border-2 border-gray-100 rounded-2xl bg-chef-calm hover:border-chef-accent flex items-center gap-6 group">
+                    <span class="text-4xl">👩‍🍳</span>
+                    <div>
+                        <h3 class="text-xl font-700 text-chef-accent uppercase tracking-wide">Lots of Free Time</h3>
+                        <p class="text-chef-neutral accessible-text">Fun, creative, or slow-cooked.</p>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- More steps will be injected or toggled via JS -->
+    </main>
+
+    <footer class="mt-8 text-chef-neutral opacity-50 text-sm">
+        Designed for accessibility • Simple Chef v1.0
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
